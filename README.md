@@ -23,3 +23,5 @@ Suggested format is json like this:
 Central dispatcher would look at _type and give it to the plugin registered to handle that type. The rest is up to the plugin.
 
 Current state: no code has been written yet.
+
+Suggested tooling: Node & express.js for the web interface, Java for the client end.
