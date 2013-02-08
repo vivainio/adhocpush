@@ -1,4 +1,4 @@
-# Adhocpush
+# Ad hoc push
 
 Typical problem: you have a phone with network connection set up. You don't want to hassle with bluetooth or USB (or,g asp. IR). You just want to browse the device file system, copy over some files, open url's in browser, etc.
 
@@ -12,17 +12,12 @@ Phone application will support "plugins" so that you can easily add new message 
 
 Suggested format is json like this:
 
+```json
 {
 	'_type' : 'pushfiles'
 	'data' : {
 		files: [...]
 	}
 }
-
+```
 Central dispatcher would look at _type and give it to the plugin registered to handle that type. The rest is up to the plugin.
-
-}
-
-
-
-
