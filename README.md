@@ -12,11 +12,11 @@ Phone application will support "plugins" so that you can easily add new message 
 
 Suggested format is json like this:
 
-```json
+```javascript
 {
-	'_type' : 'pushfiles'
+	'_type' : 'pushfiles',
 	'data' : {
-		files: [...]
+		files: []
 	}
 }
 ```
