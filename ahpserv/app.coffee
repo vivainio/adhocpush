@@ -2,6 +2,7 @@
 ###
 Module dependencies.
 ###
+ahpengine = require "./ahpengine.coffee"
 coffee_script = require("coffee-script")
 express = require("express")
 routes = require("./routes")
@@ -24,6 +25,8 @@ app.configure ->
 
 app.configure "development", ->
   app.use express.errorHandler()
+
+engine = new ahpengine.AhpEngine
 
 app.get "/", routes.index
 app.get "/users", user.list
