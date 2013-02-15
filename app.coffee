@@ -27,12 +27,12 @@ app.configure ->
 app.configure "development", ->
   app.use express.errorHandler()
 
-engine = new ahpengine.AhpEngine
+global.engine = new ahpengine.AhpEngine
 
 app.get "/", routes.index
 app.get "/users", user.list
 
-app.get "/messages", messages.messages
+app.get "/messages/:channel", messages.messages
 
 http.createServer(app).listen app.get("port"), ->
   console.log "Express server listening on port " + app.get("port")
