@@ -2,12 +2,29 @@ console.log "ahpengine"
 
 class AhpEngine
 	constructor: ->
-		@troom = new Room
+		@rooms = {}
+
+	get_room: (name) ->
+		if name in rooms
+			return rooms[name]
+		rooms[name] = r = new Room(name)
+		return r
+
+	messages: (channel) ->
+		r = get_room channel
+		r.messages()
+
+
+
 
 
 class Room
-	constructor: ->
+	constructor: (@name)->
+		
 		@client = {}
+
+	messages: ->
+		return "Hello"
 
 
 exports.AhpEngine = AhpEngine

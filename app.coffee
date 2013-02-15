@@ -6,6 +6,7 @@ ahpengine = require "./ahpengine.coffee"
 coffee_script = require("coffee-script")
 express = require("express")
 routes = require("./routes")
+messages = require "./routes/messages"
 user = require("./routes/user")
 http = require("http")
 path = require("path")
@@ -30,6 +31,9 @@ engine = new ahpengine.AhpEngine
 
 app.get "/", routes.index
 app.get "/users", user.list
+
+app.get "/messages", messages.messages
+
 http.createServer(app).listen app.get("port"), ->
   console.log "Express server listening on port " + app.get("port")
 
