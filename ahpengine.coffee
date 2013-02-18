@@ -5,14 +5,16 @@ class AhpEngine
 		@rooms = {}
 
 	get_room: (name) ->
-		if name in rooms
-			return rooms[name]
-		rooms[name] = r = new Room(name)
+		if name in @rooms
+			return @rooms[name]
+		@rooms[name] = r = new Room(name)
 		return r
 
 	messages: (channel) ->
-		r = get_room channel
+		r = @get_room channel
 		r.messages()
+
+
 
 
 
@@ -24,7 +26,9 @@ class Room
 		@client = {}
 
 	messages: ->
-		return "Hello"
+		return ["One", "two"]
+
+
 
 
 exports.AhpEngine = AhpEngine
