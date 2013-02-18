@@ -5,14 +5,16 @@ class AhpEngine
 		@rooms = {}
 
 	get_room: (name) ->
-		if name in @rooms
+		if name of @rooms
+			console.log "Existing room", name
 			return @rooms[name]
 		@rooms[name] = r = new Room(name)
+		console.log "New room",r
 		return r
 
-	messages: (channel) ->
+	wait_message: (channel, resp) ->	
 		r = @get_room channel
-		r.messages()
+		r.add_response_waiter resp
 
 
 
@@ -24,9 +26,24 @@ class Room
 	constructor: (@name)->
 		
 		@client = {}
+		@waiters = []
 
-	messages: ->
-		return ["One", "two"]
+	add_response_waiter: (resp) ->
+		@waiters.push resp
+		console.log "Add wait on",@name
+
+
+	post_message: (m) ->
+		console.log "Posting",m
+		for w in @waiters
+			console.log "Sending to waiter"
+			w.send(m)
+		console.log "Sent to all"
+		@waiters = []
+
+
+
+
 
 
 
