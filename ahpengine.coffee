@@ -16,12 +16,6 @@ class AhpEngine
 		r = @get_room channel
 		r.add_response_waiter resp
 
-
-
-
-
-
-
 class Room
 	constructor: (@name)->
 		
