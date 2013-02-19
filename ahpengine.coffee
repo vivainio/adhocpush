@@ -12,9 +12,9 @@ class AhpEngine
 		console.log "New room",r
 		return r
 
-	wait_message: (channel, resp) ->	
+	wait_message: (channel, resp, clientid) ->	
 		r = @get_room channel
-		r.add_response_waiter resp
+		r.add_response_waiter resp, clientid
 
 class Room
 	constructor: (@name)->
@@ -22,24 +22,21 @@ class Room
 		@client = {}
 		@waiters = []
 
-	add_response_waiter: (resp) ->
-		@waiters.push resp
+	add_response_waiter: (resp, clientid = "") ->
+		@waiters.push [resp, clientid]
 		console.log "Add wait on",@name
 
+	waiter_ids: ->
+		console.log "Get waiters", @waiters.length
+		return (w[1] for w in @waiters)
 
 	post_message: (m) ->
 		console.log "Posting",m
 		for w in @waiters
-			console.log "Sending to waiter"
-			w.send(m)
+			[resp, clientid] = w
+			console.log "Sending to waiter " + clientid
+			resp.send(m)
 		console.log "Sent to all"
 		@waiters = []
-
-
-
-
-
-
-
 
 exports.AhpEngine = AhpEngine

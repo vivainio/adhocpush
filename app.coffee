@@ -8,6 +8,7 @@ express = require("express")
 routes = require("./routes")
 messages = require "./routes/messages"
 user = require("./routes/user")
+chui = require("./routes/chui")
 http = require("http")
 path = require("path")
 app = express()
@@ -34,6 +35,7 @@ app.get "/users", user.list
 
 app.get "/messages/:channel", messages.messages
 app.post "/messages/:channel", messages.postmessage
+app.get "/chui/:channel", chui.chui
 
 http.createServer(app).listen app.get("port"), ->
   console.log "Express server listening on port " + app.get("port")
