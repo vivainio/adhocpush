@@ -2,7 +2,11 @@ import requests,json
 
 payload= { "_type" : "mytype" }
 
-r = requests.get("http://localhost:3000/messages/testchannel/?clientid=tester")
+addr = "http://adhocpush.herokuapp.com"
+
+url = addr + "/messages/testchannel/?clientid=tester"
+print "GET",url
+r = requests.get(url)
 print "Getting"
 print r.content
 
