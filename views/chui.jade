@@ -1,13 +1,17 @@
-h2 My headline
+h2 Channel status
 
 p Send url
   input(type="text")
   input(type="button", value="Send url") 
 
 
-
 p Waiters pending:
 ol
   for w in waiters
-     li #{waiters}
+     li #{w}
 p Log for channel #{channel}
+
+  for ent in log
+      pre= ent
+
+

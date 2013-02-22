@@ -21,6 +21,7 @@ class Room
 		
 		@client = {}
 		@waiters = []
+		@log = []
 
 	add_response_waiter: (resp, clientid = "") ->
 		@waiters.push [resp, clientid]
@@ -32,9 +33,12 @@ class Room
 
 	post_message: (m) ->
 		console.log "Posting",m
+
+		@log.unshift JSON.stringify(m)
 		for w in @waiters
 			[resp, clientid] = w
 			console.log "Sending to waiter " + clientid
+			@log.unshift "Sent to: "+clientid
 			resp.send(m)
 		console.log "Sent to all"
 		@waiters = []
