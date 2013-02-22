@@ -92,9 +92,9 @@ Download urls from internet to file system
 		files: {
 			url: "http://download.pics.com/lolcat.png",
 			targetdir: "c:/lolcat.png"
+		}
 	}
-
-	}
+	
 }
 ```
 
@@ -122,16 +122,11 @@ Reply
 	_type: "upload_files_reply",
 	request_cookie: "decafbad",
 	args: {
-
+		uploaded: [
+			{
+				file: 'c:/lolcat.png',
+				to: "http://upload.com/lolcat.png"
+			 }]
 
 	}
-
 }
-
-
-}
-
-
-
-
-
