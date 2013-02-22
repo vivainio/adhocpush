@@ -47,7 +47,6 @@ Opens url in the browser
 		'url' : 'http://google.com'
 	}
 }
-}
 ```
 
 Reply: none
