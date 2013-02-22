@@ -25,3 +25,113 @@ Central dispatcher would look at _type and give it to the plugin registered to h
 Current state: no code has been written yet.
 
 Suggested tooling: Node & express.js for the web interface, Java for the client end.
+
+
+What follows is a spec for packages that we can handle.
+
+All commands MUST contain: _type and args.
+
+All command CAN contain: "request_cookie" and client_id.
+
+In case of no client_id, all connected devices (that feel like it) can respond.
+
+### Launch url 
+
+Opens url in the browser
+
+```javascript
+{
+	'_type': 'launch_url',
+	'client': "asha_311_rd",
+	'args' : {
+		'url' : 'http://google.com'
+	}
+}
+}
+```
+
+Reply: none
+
+
+### List files
+
+```javascript
+
+{
+	_type : 'find_files',
+	request_cookie: "decafbad",
+	args : {
+		rootdir : "c:/",
+
+	}
+}
+```
+
+Reply:
+
+```javascript
+
+{
+	_type: 'find_files_reply',
+	reply_cookie: "decafbad",
+	args : {
+		files: [{name: "c:/a.txt"}, ...]
+	}
+}
+```
+
+### Request download
+
+Download urls from internet to file system
+
+```javascript 
+
+{
+	_type: 'download_files',
+	args: {
+		files: {
+			url: "http://download.pics.com/lolcat.png",
+			targetdir: "c:/lolcat.png"
+	}
+
+	}
+}
+```
+
+### Request upload
+
+Ask phone to upload files to the service
+
+```javascript
+
+{
+	_type: "upload_files",
+	request_cookie: "decafbad"
+	args: {
+		files: ["c:/lolcat.png"]
+
+	}
+}
+```
+
+Reply
+
+```javascript
+
+{
+	_type: "upload_files_reply",
+	request_cookie: "decafbad",
+	args: {
+
+
+	}
+
+}
+
+
+}
+
+
+
+
+
