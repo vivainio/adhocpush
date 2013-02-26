@@ -24,10 +24,12 @@ commands = [
  {
     '_type': 'download_files',
     'args': {
-        'files': {
-           'url': "http://download.pics.com/lolcat.png",
-            'targetdir': "c:/lolcat.png"
+        'files': [
+        {
+           'url': "http://www.helsinki.fi/jarj/hyc/kuvat/EM2001/top10/Werner.jpg",
+           'targetdir': "c:/werner.jpg"
         }
+        ]
     }
 
 },
@@ -50,8 +52,8 @@ addr = "http://adhocpush.herokuapp.com"
 url = addr + "/messages/testchannel/?clientid=tester"
 
 print "POST",url
-
-r = requests.post(url, data = json.dumps(commands[int(sys.argv[1])]), headers = headers)
-
+command = commands[int(sys.argv[1])]
+r = requests.post(url, data = json.dumps(command), headers = headers)
+print command
 print r.content
 
